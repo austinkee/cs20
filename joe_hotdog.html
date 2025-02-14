@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Function Demo</title>
+</head>
+
+<body>
+	<script language="javascript">
+
+    const PRICE_HOTDOG = 4.99; 
+    const PRICE_FF = 3.99; 
+    const PRICE_DRINKS = 1.79;
+    const TAX_RATE = 0.0625;
+    const DISCOUNT_FLOOR = 30.0;
+    const DISCOUNT_RATE = 0.10;
+    
+    numDogs = prompt("How many hotdogs would you like? ","0" );
+    numFries = prompt("How many fries would you like? ","0" );
+    numSoda = prompt("How many sodas would you like? ", "0");
+
+    function showMoney(amount) {
+      let scaled = Math.round(amount * 100);
+      let integerPart = Math.floor(scaled / 100);
+      let decimalPart = scaled % 100;
+
+      if (decimalPart < 10) {
+          return integerPart + ".0" + decimalPart;
+      }
+      return integerPart + "." + decimalPart;
+    }
+    subtotal = ((numDogs * PRICE_HOTDOG) + (numFries * PRICE_FF) + (numSoda * PRICE_DRINKS))
+
+    let final_total;
+    let discount = 0;
+    let new_total;
+    if (subtotal >= DISCOUNT_FLOOR){
+      discount = (subtotal * DISCOUNT_RATE)
+      new_total = (subtotal - discount);
+      final_total = (new_total - (new_total * TAX_RATE));
+    } else {
+      new_total = subtotal;
+      final_total = (new_total - (new_total * TAX_RATE));
+    }
+
+    document.write ("Number of hotdogs ordered: " + numDogs + " <br> ");
+    document.write ("Cost per hotdog: " + PRICE_HOTDOG + " <br> ");
+    document.write ("Number of french fries ordered: " + numFries + " <br> ");
+    document.write ("Cost per french fries: " + PRICE_FF + " <br> ");
+    document.write ("Number of sodas ordered: " + numSoda + " <br> ");
+    document.write ("Cost per soda: " + PRICE_DRINKS + " <br> " + "<br>");
+    
+    document.write ("Subtotal before discount (if applicable): " + showMoney(subtotal) + " <br> ");
+    document.write ("Discount: " +  showMoney(discount) + " <br> ");
+    document.write ("Subtotal after discount: " + showMoney(new_total) + " <br> ");
+    document.write ("Massachusetts Sales Tax: " + (TAX_RATE * 100) + "% <br> ");
+    document.write ("Final Total: " + showMoney(final_total) + " <br> ");
+
+
+
+
+
+
+
+
+  
+
+
+</script>
+</body>
+</html>
