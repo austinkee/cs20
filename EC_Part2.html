@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Function Demo</title>
+
+</head>
+<body>
+    <form>
+        <label>
+            <input type="checkbox" id="checkAll" onclick="toggleAll()"> <span id="checkLabel">Check All</span>
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" class="checkbox" onclick="updateCheckAll()"> Option 1
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" class="checkbox" onclick="updateCheckAll()"> Option 2
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" class="checkbox" onclick="updateCheckAll()"> Option 3
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" class="checkbox" onclick="updateCheckAll()"> Option 4
+        </label>
+    </form>
+
+    <script>
+        function toggleAll() {
+            let checkAll = document.getElementById("checkAll");
+            let label = document.getElementById("checkLabel");
+            let checkboxes = document.querySelectorAll(".checkbox");
+
+            if (checkAll.checked) {
+                checkboxes.forEach(checkbox => checkbox.checked = true);
+                label.textContent = "Uncheck All";
+            } else {
+                checkboxes.forEach(checkbox => checkbox.checked = false);
+                label.textContent = "Check All";
+            }
+        }
+
+        function updateCheckAll() {
+            let checkAll = document.getElementById("checkAll");
+            let label = document.getElementById("checkLabel");
+            let checkboxes = document.querySelectorAll(".checkbox");
+            
+            let allChecked = [...checkboxes].every(checkbox => checkbox.checked);
+            let anyChecked = [...checkboxes].some(checkbox => checkbox.checked);
+
+            checkAll.checked = allChecked;
+          if (allChecked) {
+            label.textContent = "Uncheck All";
+          } else{
+            label.textContent = "Check All";
+          }
+          }
+    </script>
+</body>
+</html>
