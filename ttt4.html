@@ -81,7 +81,9 @@
     <button class="start-button" id="startGame" onclick="startGame()">Start Game</button>
     <div class="board">
       <script>
+
           const NUM_SQUARES = 9;
+          //creates an ID for each square written as sq
           for (i = 0; i < NUM_SQUARES; i++)
           {
             id = "sq" + i;
@@ -93,6 +95,7 @@
         <script>
           let curr_player;
           let gameStatus = true;
+          //picks random number
           if (Math.random() < 0.5){
             curr_player = "X";
           } else {
@@ -100,6 +103,7 @@
           }
           document.getElementById("turn-check").textContent = curr_player + "'s Turn";
           
+          //This function checks if someone has won or if its a stalemate by utilizing an array called moves
           function checkGame() {
             let moves = [];
             document.querySelectorAll(".square").forEach((square, index) => {
@@ -110,22 +114,27 @@
               moves[index] = value;
              }
             });
-
-            const winConditions = [
-              [0, 1, 2], [3, 4, 5], [6, 7, 8],
-              [0, 3, 6], [1, 4, 7], [2, 5, 8],
-              [0, 4, 8], [2, 4, 6]
+            
+            //possible iterations you can win with
+            winConditions = [
+              moves[0] + moves[1] + moves[2],
+              moves[3] + moves[4] + moves[5],
+              moves[6] + moves[7] + moves[8],
+              moves[0] + moves[3] + moves[6],
+              moves[1] + moves[4] + moves[7],
+              moves[2] + moves[5] + moves[8],
+              moves[0] + moves[4] + moves[8],
+              moves[2] + moves[4] + moves[6]
             ];
 
-            for (i = 0; i < winConditions.length; i++){
-              let [a, b, c] = winConditions[i];
-             
-              if (moves[a] !== "-" && moves[a] === moves[b] && moves[a] === moves[c]) {
-                document.getElementById("game-status").textContent = moves[a] +" Wins!";
-                gameStatus = false;
-                return;
-              }
-            }
+              for (i = 0; i < winConditions.length; i++){
+                if (winConditions[i] === "XXX" || winConditions[i] === "OOO") {
+                  document.getElementById("game-status").textContent = moves[a] +" Wins!";
+                  gameStatus = false;
+                  return;
+                }
+              } 
+            //Stalemate option
             if (!moves.includes("-")){
               document.getElementById("game-status").textContent = "Stalemate!";
               gameStatus = false;
@@ -134,7 +143,7 @@
           }
 
 
-
+          //Function for when the square gets clicked to place an X or O
           function squareClick(index) {
             if (!gameStatus) return;
             let square = document.getElementById("sq" + index);
@@ -142,8 +151,10 @@
               square.textContent = curr_player;
               alert("Square number: " + index);
               
+              //check after every click
               checkGame();
               
+              //switch players
               if (gameStatus) {  
                 if (curr_player === "X"){
                   curr_player = "O";
@@ -159,7 +170,7 @@
 
 
 
-
+          //Function for the start of the game that resets the board
           function startGame() {
             gameStatus = true;
 
