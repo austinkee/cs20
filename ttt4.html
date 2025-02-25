@@ -1,0 +1,182 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Tic Tac Toe </title>
+  <script></script>
+  <style>
+    body {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      margin: 20px auto;
+    }
+    .row {
+      display: flex;
+    }
+    .square {
+      width: 100px;
+      height: 100px;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 100px;
+      font-size: 64px;
+      font-weight: bold;
+      background-color: lightgray;
+      border: 2px black;
+      margin: 5px;
+      cursor:pointer;
+    }
+    .square:hover {
+      background-color: gray;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .messages {
+      border: 2px black;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+      font-size: 18px;
+      background-color: lightgray;
+      font-weight: bold;
+    }
+    .turn-check {
+      border: 2px black;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+      font-size: 18px;
+      background-color: lightgray;
+      font-weight: bold;
+    }
+    .start-button {
+      margin: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+  </style>
+
+
+</head>
+<body>
+    <h1 class="title">Tic Tac Toe</h1>
+    <div class="messages" id="message-area">Current Turn: X</div>
+    <div class="turn-check" id="turn-check">X's Turn</div>
+    <button class="start-button" id="startGame" onclick="startGame()">Start Game</button>
+    <div class="board">
+      <script>
+          const NUM_SQUARES = 9;
+          for (i = 0; i < NUM_SQUARES; i++)
+          {
+            id = "sq" + i;
+            document.write ("<div class='square' id='" + id + "' onclick='squareClick(" + i + ")'></div>");
+          }
+        </script>
+        </div>
+        <div class="messages" id="game-status">Game Status</div>
+        <script>
+          let curr_player;
+          let gameStatus = true;
+          if (Math.random() < 0.5){
+            curr_player = "X";
+          } else {
+            curr_player = "O";
+          }
+          document.getElementById("turn-check").textContent = curr_player + "'s Turn";
+          
+          function checkGame() {
+            let moves = [];
+            document.querySelectorAll(".square").forEach((square, index) => {
+             let value = square.innerText;
+             if (value === "") {
+              moves[index] = "-";
+             } else {
+              moves[index] = value;
+             }
+            });
+
+            const winConditions = [
+              [0, 1, 2], [3, 4, 5], [6, 7, 8],
+              [0, 3, 6], [1, 4, 7], [2, 5, 8],
+              [0, 4, 8], [2, 4, 6]
+            ];
+
+            for (i = 0; i < winConditions.length; i++){
+              let [a, b, c] = winConditions[i];
+             
+              if (moves[a] !== "-" && moves[a] === moves[b] && moves[a] === moves[c]) {
+                document.getElementById("game-status").textContent = moves[a] +" Wins!";
+                gameStatus = false;
+                return;
+              }
+            }
+            if (!moves.includes("-")){
+              document.getElementById("game-status").textContent = "Stalemate!";
+              gameStatus = false;
+            }
+
+          }
+
+
+
+          function squareClick(index) {
+            if (!gameStatus) return;
+            let square = document.getElementById("sq" + index);
+            if (square.textContent === ""){
+              square.textContent = curr_player;
+              alert("Square number: " + index);
+              
+              checkGame();
+              
+              if (gameStatus) {  
+                if (curr_player === "X"){
+                  curr_player = "O";
+                } else {
+                  curr_player = "X";
+                }
+              document.getElementById("turn-check").textContent = curr_player + "'s Turn";
+              document.getElementById("message-area").textContent = "Current Turn: " + curr_player;
+              document.getElementById("game-status").textContent = "Game Status";
+              }
+            }
+          }
+
+
+
+
+          function startGame() {
+            gameStatus = true;
+
+            for (i = 0; i < NUM_SQUARES; i++) {
+              document.getElementById("sq" + i).textContent = "";
+            }
+            if (Math.random() < 0.5) {
+              curr_player = "X";
+            } else {
+              curr_player = "O";
+            }
+            document.getElementById("turn-check").textContent = curr_player + "'s Turn";
+
+          }
+
+
+        </script>
+    
+</body>
+</html>
