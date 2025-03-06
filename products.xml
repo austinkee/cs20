@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href = "products.css" ?>
+
+<products>
+
+  <product>
+    <name>Vintage T-shirt</name>
+    <description>Tie-die Grateful Dead T-shirt</description>
+    <price>$35</price>
+    <categories>
+      <category>Clothing</category>
+      <category>Vintage</category>
+    </categories>
+  </product>
+
+  <product>
+    <name>Jordan 1s</name>
+    <description>Original Nike Air Jordan Shoes</description>
+    <price>$140</price>
+    <categories>
+      <category>Footwear</category>
+      <category>Vintage</category>
+    </categories>
+  </product>
+
+  <product>
+    <name>Jeans</name>
+    <description>Abercrombie and Fitch light wash Jeans</description>
+    <price>$75</price>
+    <categories>
+      <category>Clothing</category>
+      <category>Casual</category>
+    </categories>
+  </product>
+
+  <product>
+    <name>Dress Shirt</name>
+    <description>Vineyard Vines White Button Down</description>
+    <price>$45</price>
+    <categories>
+      <category>Clothing</category>
+      <category>Buttondown</category>
+    </categories>
+  </product>
+
+  <product>
+    <name>Puffer Jacket</name>
+    <description>Black Patagonia Puffer Jacket</description>
+    <price>$350</price>
+    <categories>
+      <category>Clothing</category>
+      <category>Outdoor</category>
+    </categories>
+  </product>
+
+  <product>
+    <name>iPhone 16</name>
+    <description>Brand New iPhone 16</description>
+    <price>$1100</price>
+    <categories>
+      <category>Electronics</category>
+    </categories>
+  </product>
+
+  <product>
+    <name>Yeti Water Bottle</name>
+    <description>Yeti 32oz Tumbler Cup</description>
+    <price>$60</price>
+    <categories>
+      <category>Drinkware</category>
+      <category>Outdoor</category>
+    </categories>
+  </product>
+
+  <product>
+    <name>Christian Necklace</name>
+    <description>Gold Plated Necklace with Cross Pendant</description>
+    <price>$80</price>
+    <categories>
+      <category>Clothing</category>
+      <category>Neckwear</category>
+    </categories>
+  </product>
+</products>

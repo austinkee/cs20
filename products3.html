@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Product List in JSON</title>
+  <style>
+
+    body {
+      margin: 20px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: gray;
+    }
+
+  </style>
+</head>
+<body>
+  <button id="loadbutton">Load Products</button>
+  <br><br>
+  <label for="categorySelect">Select Category:</label>
+  <select id="categorySelect">
+      <option value="">--Select Category--</option>
+  </select>
+  <button id="filterButton">Filter</button>
+
+  <div id="result"></div>
+  <script   src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script language="javascript">
+    let productsData = [];
+
+    //Function for when load products button is clicked
+    $("#loadbutton").click(function() {
+      $.get("products.json", function (data) {
+        //store the loaded data for later use
+        productsData = data;
+
+        //clear previous results
+        $("#result").html('');  
+
+        //populate category dropdown based on the data
+        const categories = [];
+        productsData.forEach(function(product) {
+          product.categories.forEach(function(category) {
+            if (!categories.includes(category)) {
+              categories.push(category);
+            }
+          });
+        });
+
+        //populate the category dropdown
+        categories.forEach(function(category) {
+          $('#categorySelect').append(`<option value="${category}">${category}</option>`)
+        });
+      }, "json");
+    });
+
+
+    //When the Filter button is clicked
+    $("#filterButton").click(function() {
+      const selectedCategory = $("#categorySelect").val();
+      
+      $("#result").html('');
+      
+      // Filer products by selected category
+      if (selectedCategory) {
+        var filteredProducts = productsData.filter(function(product) {
+          return product.categories.includes(selectedCategory);
+        });
+
+        // Display product names for the selected category
+        if (filteredProducts.length > 0) {
+          filteredProducts.forEach(function(product) {
+            $("#result").append(`<div class="product">${product.name}</div>`);
+          });
+        } else {
+          $("#result").html('<p>No products found in this category.</p>');
+        }
+      }
+    });
+
+
+  </script>
+
+</body>
+</html> 

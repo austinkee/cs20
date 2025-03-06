@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Vintage T-shirt",
+    "description": "Tie-dye Grateful Dead T-shirt",
+    "price": "$35",
+    "categories": ["Clothing", "Vintage"]
+  },
+  {
+    "name": "Jordan 1s",
+    "description": "Original Nike Air Jordan Shoes",
+    "price": "$140",
+    "categories": ["Footwear", "Vintage"]
+  },
+  {
+    "name": "Jeans",
+    "description": "Abercrombie and Fitch light wash Jeans",
+    "price": "$75",
+    "categories": ["Clothing", "Casual"]
+  },
+  {
+    "name": "Dress Shirt",
+    "description": "Vineyard Vines White Button Down",
+    "price": "$45",
+    "categories": ["Clothing", "Buttondown"]
+  },
+  {
+    "name": "Puffer Jacket",
+    "description": "Black Patagonia Puffer Jacket",
+    "price": "$350",
+    "categories": ["Clothing", "Outdoor"]
+  },
+  {
+    "name": "iPhone 16",
+    "description": "Brand New iPhone 16",
+    "price": "$1100",
+    "categories": ["Electronics"]
+  },
+  {
+    "name": "Yeti Water Bottle",
+    "description": "Yeti 32oz Tumbler Cup",
+    "price": "$60",
+    "categories": ["Drinkware", "Outdoor"]
+  },
+  {
+    "name": "Christian Necklace",
+    "description": "Gold Plated Necklace with Cross Pendant",
+    "price": "$80",
+    "categories": ["Clothing", "Neckwear"]
+  }
+]

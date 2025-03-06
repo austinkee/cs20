@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Product List in JSON</title>
+  <style>
+
+    body {
+      margin: 20px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: gray;
+    }
+
+  </style>
+</head>
+<body>
+  <button id="loadbutton">Load Products</button>
+  <div id="result"></div>
+  <script   src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script language="javascript">
+    $("#loadbutton").click(function() {
+      $.get("products.json", function (data) {
+        $("#result").html('');  
+
+        data.forEach(function(product) {
+          var productHTML = `
+          <div class="product">
+              <h3>${product.name}</h3>
+              <p><strong>description:</strong> ${product.description}</p>
+              <p><strong>price:</strong> ${product.price}</p>
+              <p><strong>categories:</strong> <span class="categories">${product.categories.join(',')}</span></p>
+            </div>
+          `;
+          $("#result").append(productHTML);
+        });
+      }, "json");
+    });
+
+
+  </script>
+
+</body>
+</html> 
