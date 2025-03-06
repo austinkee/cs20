@@ -36,6 +36,7 @@
   <script language="javascript">
     let productsData = [];
 
+    
     //Function for when load products button is clicked
     $("#loadbutton").click(function() {
       $.get("products.json", function (data) {
@@ -45,6 +46,17 @@
         //clear previous results
         $("#result").html('');  
 
+        data.forEach(function(product) {
+          var productHTML = `
+          <div class="product">
+              <h3>${product.name}</h3>
+              <p><strong>description:</strong> ${product.description}</p>
+              <p><strong>price:</strong> ${product.price}</p>
+              <p><strong>categories:</strong> <span class="categories">${product.categories.join(',')}</span></p>
+            </div>
+          `;
+          $("#result").append(productHTML);
+        });
         //populate category dropdown based on the data
         const categories = [];
         productsData.forEach(function(product) {
